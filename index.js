@@ -2,14 +2,42 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-app.get('/', function(req, res) {
-  res.send('<h1>Hello world</h1>');
+var PORT = process.env.PORT || 5000;
+
+function get_usertype(usertype) {
+    if (usertype === 'player') return 'controller';
+    if (usertype === 'controller') return 'player';
+    return '';
+}
+
+app.get('/', function(req, res){
+  res.sendfile('index.html');
 });
 
-http.listen(80, function() {
-  console.log('listening on *:80');
+app.get('/test.js', function(req, res) {
+    res.sendfile('test.js');
 });
 
-io.on('connection', function(socket) {
+io.on('connection', function(socket){
+  socket.on('disconnect', function(){
+    console.log(socket.usertype + ' disconnected from ' + socket.room);
+  });
+  socket.on('room', function(info){
+    if(socket.room) {
+        socket.leave(socket.room);
+    }
+    console.log(info.client + ' joining room ' + info.room);
+    socket.usertype = info.client;
+    socket.room = info.room;
+    socket.join(info.client + ' ' + info.room);
+  });
 
+  socket.on('data', function(data) {
+    var room = get_usertype(socket.usertype) + ' ' + socket.room;
+    io.to(room).emit('data', data);
+  });
+});
+
+http.listen(PORT, function(){
+  console.log('listening on *:' + PORT);
 });
