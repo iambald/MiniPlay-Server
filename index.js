@@ -1,4 +1,5 @@
-var app = require('express')();
+var express = require('express')
+var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
@@ -10,13 +11,7 @@ function get_usertype(usertype) {
     return '';
 }
 
-app.get('/', function(req, res){
-  res.sendfile('index.html');
-});
-
-app.get('/test.js', function(req, res) {
-    res.sendfile('test.js');
-});
+app.use(express.static(__dirname + '/public'));
 
 io.on('connection', function(socket){
   socket.on('disconnect', function(){
