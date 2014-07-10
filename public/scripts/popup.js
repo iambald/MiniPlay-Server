@@ -19,6 +19,25 @@ $(function() {
     set_state('no_tab');
   }
 
+  setBackgroundSize();
+  $(window).resize(setBackgroundSize)
+
+  function setBackgroundSize() {
+    var width = $(window).width();
+    var height = $(window).height();
+    var size = Math.max(width, height) - $('top-bar').height() - $('bottom-bar').height();
+    $('#album-art').width(size);
+    $('#album-art').height(size);
+    if (height > width) {
+      $('#album-art').css('background-position-x', Math.round((height - width) / 2) * -1);
+      $('#album-art').css('background-position-y', 0);
+    }
+    else {
+      $('#album-art').css('background-position-x', 0);
+      $('#album-art').css('background-position-y', Math.round((width - height) / 2) * -1);
+    }
+  }
+
   function secondsToHms(d) {
     d = Number(d);
     var h = Math.floor(d / 3600);
@@ -51,14 +70,14 @@ $(function() {
       case 'no_tab':
         $('.interface').attr('disabled', true);
         $('#infobar').hide();
-        $('#album-art-img').attr('src', 'img/default_album.png');
+        $('#album-art').css('background-image', 'url("../img/default_album.png")');
         $('#title').html('No Google Music tab found');
         $('#artist').html('Make sure Google Music is open on your computer');
         break;
       case 'no_song':
         $('.interface').attr('disabled', true);
         $('#infobar').hide();
-        $('#album-art-img').attr('src', 'img/default_album.png');
+        $('#album-art').css('background-image', 'url("../img/default_album.png")');
         $('#title').html('No song selected');
         $('#artist').html('');
         $('#album').html('');
@@ -71,7 +90,6 @@ $(function() {
   }
 
   function update(response) {
-    console.log('hi');
     music_status = response;
     if (response === undefined) {
       set_state('no_tab');
@@ -88,7 +106,7 @@ $(function() {
         if (response.album_art == 'http://undefined') {
           response.album_art = 'img/default_album.png';
         }
-        $('#album-art-img').attr('src', response.album_art);
+        $('#album-art').css('background-image', 'url("' + response.album_art + '")');
         toggle_play(response.status);
         if (!slider.dragging) {
           $('#current-time').html(response.current_time);

@@ -1,12 +1,29 @@
-#popup {
+html {
+  overflow: hidden;
+}
+
+body {
   font-family: 'Roboto', arial, sans-serif;
-  padding: 11px 30px 22px 10px;
-  width: 450px;
-  height: 210px;
-  background-color: #e5e5e5;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
   position: absolute;
   cursor: default;
+  margin: 0;
+  overflow: hidden;
   -webkit-user-select: none;
+}
+
+#album-art {
+  background-image: url('../img/default_album.png');
+  background-size: 100%;
+  background-position: center center;
+}
+
+#main {
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
 }
 
 #artist a {
@@ -14,29 +31,43 @@
   text-decoration: none;
 }
 
-body {
-  margin: 0;
-  min-width: 450px;
-  min-height: 210px;
+#top-bar {
   overflow: hidden;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 0.5em;
+  padding-left: 1em;
 }
 
-#card {
-  border-radius: 2px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, .2);
-  background: white;
-  height: 128px;
-  width: 430px;
-}
-
-#album-art {
+#current-time {
   float: left;
-  border-radius: 2px 0 0 2px;
+  color: #ffffff;
+  margin-top: -2em;
+  margin-left: 1em;
+  text-shadow: 1px 1px #222;
 }
 
-#album-art-img {
-  border-radius: 2px 0 0 2px;
-  -webkit-user-drag: none;
+#total-time {
+  float: right;
+  color: #ffffff;
+  margin-top: -2em;
+  margin-right: 1em;
+  text-shadow: 1px 1px #222;
+}
+
+#footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
+#bottom-bar {
+  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.95);
+  text-align: center;
 }
 
 #card-right {
@@ -48,20 +79,12 @@ body {
   overflow: hidden;
 }
 
-.fade {
+#fade {
   position: absolute;
   width: 30px;
   right: 0;
+  height: 100%;
   background-image: -webkit-linear-gradient(left,rgba(255,255,255,0) 0%,#fff 30px, #fff 100%);
-}
-
-#title-fade {
-  height: 20pt;
-}
-
-#info-fade {
-  top: 45px;
-  height: 50px;
 }
 
 #infobar {
@@ -80,12 +103,10 @@ body {
 
 #title {
   color: #333;
-  font-size: 20px;
+  font-size: 16pt;
   font-weight: 300;
-  margin-bottom: 5px;
-  padding-bottom: 5px;
-  border-bottom: 1px solid #f1f1f1;
   overflow: hidden;
+  height: 20pt;
 }
 
 #equalizer {
@@ -117,11 +138,12 @@ body {
   opacity: 0.5!important;
 }
 
-#artist, #album {
-  font-size: 14px;
+#artist {
+  font-size: 12pt;
   font-weight: 300;
   color: #aaa;
   overflow: hidden;
+  margin-bottom: 2pt;
 }
 
 .control {
@@ -269,6 +291,7 @@ body {
   padding: 7px 0 7px 0;
   margin-top: -7px;
   cursor: pointer;
+  width: 100%;
 }
 
 #slider[disabled] {
@@ -278,7 +301,7 @@ body {
 #slider-background {
   background-color: #eaeaea;
   height: 3px;
-  width: 450px;
+  width: 100%;
 }
 
 #slider-thumb {
