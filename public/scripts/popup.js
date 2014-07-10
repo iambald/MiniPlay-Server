@@ -3,8 +3,9 @@ $(function() {
   _gaq.push(['_setAccount', 'UA-48472705-1']);
   _gaq.push(['_trackPageview']);
 
-  var email = "rememberthebaldness@gmail.com";
-  var socket = io('http://miniplay.herokuapp.com');
+  var url = 'http://miniplay.herokuapp.com';
+
+  var socket = io(url);
   var music_status = {};
   socket.on('connect', function() {
     socket.emit('room', {client : 'controller', room : email});
@@ -20,7 +21,53 @@ $(function() {
   }
 
   setBackgroundSize();
-  $(window).resize(setBackgroundSize)
+  $(window).resize(setBackgroundSize);
+
+  var email = get_email();
+  if (email == '') {
+    $('#login-overlay').css('display', 'table');
+  }
+  else {
+    $('#main').css('display', 'block');
+  }
+
+  $('#loading-overlay').css('display', 'none');
+
+  function get_email() {
+    if (typeof(Storage) !== 'undefined') {
+      var em = localStorage.getItem('email');
+      return (em == null) ? '' : em;
+    }
+    else {
+      var ca = document.cookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1);
+        if (c.indexOf('email=') != -1) return c.substring('email='.length, c.length);
+      }
+      return '';
+    }
+  }
+
+  function set_email(em) {
+    if (typeof(Storage) !== 'undefined') {
+      localStorage.setItem('email', em);
+    }
+    else {
+      var d = new Date();
+      d.setTime(d.getTime() + (365*24*60*60*1000));
+      var expires = 'expires='+d.toGMTString();
+      document.cookie = 'email=' + em + '; ' + expires + '; domain=' + url;
+    }
+    email = em;
+    socket.emit('room', {client : 'controller', room : email});
+  }
+
+  $('#email-submit').click(function(ev) {
+    set_email($('#email-input').val());
+    $('#main').css('display', 'block');
+    $('#login-overlay').css('display', 'none');
+  });
 
   function setBackgroundSize() {
     var width = $(window).width();
@@ -48,7 +95,7 @@ $(function() {
 
   var slider = new Dragdealer('slider', {
     callback: function(x, y) {
-      if (socket.socket.connected) {
+      if (socket.connected) {
         socket.emit('data', {action : 'send_command', type : 'slider', position : x});
       }
     },
