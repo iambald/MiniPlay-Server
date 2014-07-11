@@ -74,6 +74,7 @@ body {
   background-color: rgba(255, 255, 255, 0.95);
   padding: 0.5em;
   padding-left: 1em;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4);
 }
 
 #current-time {
@@ -102,15 +103,7 @@ body {
   background-color: #ffffff;
   background-color: rgba(255, 255, 255, 0.95);
   text-align: center;
-}
-
-#card-right {
-  position: absolute;
-  left: 140px;
-  width: 268px;
-  padding: 10px 2px 15px 15px;
-  white-space: nowrap;
-  overflow: hidden;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4);
 }
 
 #fade {
@@ -119,20 +112,6 @@ body {
   right: 0;
   height: 100%;
   background-image: -webkit-linear-gradient(left,rgba(255,255,255,0) 0%,#fff 30px, #fff 100%);
-}
-
-#infobar {
-  list-style-type: none;
-  padding: 0;
-}
-
-#controls {
-  position: absolute;
-  bottom: 33px;
-  left: 0px;
-  background-color: #fafafa;
-  width: 450px;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4);
 }
 
 #title {
@@ -314,16 +293,16 @@ body {
 #played-slider {
   background-color: #fd8500;
   width: 0px;
-  height: 3px;
+  height: 3pt;
 }
 
 #slider {
   outline: none;
-  height: 3px;
+  height: 3pt;
   position: absolute;
   z-index: 1000;
-  padding: 7px 0 7px 0;
-  margin-top: -7px;
+  padding: 7pt 0 7pt 0;
+  margin-top: -7pt;
   cursor: pointer;
   width: 100%;
 }
@@ -334,28 +313,19 @@ body {
 
 #slider-background {
   background-color: #eaeaea;
-  height: 3px;
+  height: 3pt;
   width: 100%;
 }
 
 #slider-thumb {
-  width: 12px;
-  height: 12px;
-  margin-top: -7px;
+  width: 13pt;
+  height: 13pt;
+  margin-top: -8pt;
   position: relative;
-
-  background: no-repeat url(../img/sprites.png) -725px 0;
-  background-size: 766px 53px;
+  border-radius: 50%;
+  background-color: #fd8500;
 }
 
 #slider-thumb[disabled] {
   display: none;
-}
-
-#time-and-slider {
-  position:absolute;
-  right: 0px;
-  left: 0px;
-  bottom: 67px;
-  z-index: 1000;
 }
