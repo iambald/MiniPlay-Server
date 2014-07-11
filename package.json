@@ -1,9 +1,17 @@
 {
   "name": "MiniPlay-Server",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Server for mobile control of MiniPlay",
   "dependencies": {
     "express": "^4.5.0",
-    "socket.io": "^1.0.6"
+    "socket.io": "^1.0.6",
+    "newrelic": ">=1.7.5"
+  },
+  "engine": {
+    "node": "0.10.x"
+  },
+  "repository": {
+    "type" : "git",
+    "url": "https://github.com/iambald/MiniPlay-Server"
   }
 }
