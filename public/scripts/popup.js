@@ -64,11 +64,23 @@ $(function() {
     socket.emit('room', {client : 'controller', room : email});
   }
 
-  $('#email-submit').click(function(ev) {
+  $('#setting').click(function(ev) {
+    set_email('');
+    $('#login-overlay').css('display', 'table');
+    $('#main').css('display', 'none');
+  });
+
+  $('#email-box').submit(function() {
     set_email($('#email-input').val());
     $('#main').css('display', 'block');
     $('#login-overlay').css('display', 'none');
   });
+
+  // $('#email-submit').click(function(ev) {
+  //   set_email($('#email-input').val());
+  //   $('#main').css('display', 'block');
+  //   $('#login-overlay').css('display', 'none');
+  // });
 
   function setBackgroundSize() {
     var width = $(window).width();

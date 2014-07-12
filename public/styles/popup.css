@@ -14,16 +14,6 @@ body {
   -webkit-user-select: none;
 }
 
-#setting {
-  background: no-repeat url(../img/sprites.png) -742px 0px;
-  background-size: 766px 53px;
-  outline: none;
-  border: none;
-  width: 24px;
-  height: 53px;
-  transition: background-color 0.218s;
-}
-
 #loading-overlay {
   display: table;
 }
@@ -130,6 +120,7 @@ body {
   font-weight: 300;
   overflow: hidden;
   height: 20pt;
+  width: 90%;
 }
 
 #equalizer {
@@ -167,6 +158,7 @@ body {
   color: #aaa;
   overflow: hidden;
   margin-bottom: 2pt;
+  width: 90%;
 }
 
 .control {
@@ -194,9 +186,13 @@ body {
   background-size: 766px 53px;
   outline: none;
   border: none;
-  width: 24px;
-  height: 53px;
+  width: 1.5em;
+  height: 100%;
   transition: background-color 0.218s;
+  position: absolute;
+  top: 0;
+  right: 1.5em;
+  margin-top: 0;
 }
 
 .control[disabled] {
