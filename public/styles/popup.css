@@ -14,6 +14,16 @@ body {
   -webkit-user-select: none;
 }
 
+#setting {
+  background: no-repeat url(../img/sprites.png) -742px 0px;
+  background-size: 766px 53px;
+  outline: none;
+  border: none;
+  width: 24px;
+  height: 53px;
+  transition: background-color 0.218s;
+}
+
 #loading-overlay {
   display: table;
 }
