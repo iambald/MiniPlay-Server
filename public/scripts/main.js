@@ -22,7 +22,6 @@ $(function() {
   }
 
   setBackgroundSize();
-  $(window).resize(setBackgroundSize);
 
   var email = get_email();
   if (email == '') {
@@ -64,36 +63,6 @@ $(function() {
     socket.emit('room', {client : 'controller', room : email});
   }
 
-  $('#setting').click(function(ev) {
-    $('#menu').show();
-    $('#menu').css('top', $('#top-bar').height());
-    ev.stopPropagation();
-  });
-
-  $('body').on('click', function(ev) {
-    if ($('#menu').has(ev.target).length === 0) {
-      $('#menu').hide();
-    }
-  });
-
-  $('#signout').click(function(ev) {
-    set_email('');
-    $('#login-overlay').css('display', 'table');
-    $('#main').hide();
-  });
-
-  $('#email-box').submit(function() {
-    set_email($('#email-input').val());
-    $('#main').show();
-    $('#login-overlay').hide();
-  });
-
-  // $('#email-submit').click(function(ev) {
-  //   set_email($('#email-input').val());
-  //   $('#main').css('display', 'block');
-  //   $('#login-overlay').css('display', 'none');
-  // });
-
   function setBackgroundSize() {
     var width = $(window).width();
     var height = $(window).height();
@@ -117,23 +86,6 @@ $(function() {
     var s = Math.floor(d % 3600 % 60);
     return ((h > 0 ? h + ":" : "") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + ":" : "0:") + (s < 10 ? "0" : "") + s);
   }
-
-  var slider = new Dragdealer('slider', {
-    callback: function(x, y) {
-      if (socket.connected) {
-        socket.emit('data', {action : 'send_command', type : 'slider', position : x});
-      }
-    },
-    animationCallback: function(x, y) {
-      if (music_status.total_time_s !== undefined) {
-        $('#played-slider').css('width', $('#slider-thumb').css('left'));
-        $('#current-time').html(secondsToHms(Math.round(x * music_status.total_time_s)));
-      }
-    },
-    x: $('#played-slider').width() / ($('#slider').width() - ($('#slider-thumb').width())),
-    speed: 1,
-    slide: false
-  });
 
   function set_state(state) {
     switch (state) {
@@ -253,9 +205,53 @@ $(function() {
     }
   }
 
-  $('.control').on('click', function(e) {
-    var name = $(e.currentTarget).attr('id');
+  $('.control').click(function(ev) {
+    var name = $(ev.currentTarget).attr('id');
     socket.emit('data', {action : 'send_command', type : name});
+  });
+
+  $('#setting').click(function(ev) {
+    $('#menu').toggle();
+    $('#menu').css('top', $('#top-bar').height());
+    ev.stopPropagation();
+  });
+
+  $('body').click(function(ev) {
+    if ($('#menu').has(ev.target).length === 0) {
+      $('#menu').hide();
+    }
+  });
+
+  $('#signout').click(function(ev) {
+    set_email('');
+    $('#login-overlay').css('display', 'table');
+    $('#main').hide();
+  });
+
+  $('#email-box').submit(function() {
+    set_email($('#email-input').val());
+    $('#main').show();
+    $('#login-overlay').hide();
+    return false;
+  });
+
+  $(window).resize(setBackgroundSize);
+
+  var slider = new Dragdealer('slider', {
+    callback: function(x, y) {
+      if (socket.connected) {
+        socket.emit('data', {action : 'send_command', type : 'slider', position : x});
+      }
+    },
+    animationCallback: function(x, y) {
+      if (music_status.total_time_s !== undefined) {
+        $('#played-slider').css('width', $('#slider-thumb').css('left'));
+        $('#current-time').html(secondsToHms(Math.round(x * music_status.total_time_s)));
+      }
+    },
+    x: $('#played-slider').width() / ($('#slider').width() - ($('#slider-thumb').width())),
+    speed: 1,
+    slide: false
   });
   /*
   $('#lastfm-toggle').on('click', function() {
