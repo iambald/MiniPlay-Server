@@ -3,8 +3,8 @@ $(function() {
   _gaq.push(['_setAccount', 'UA-48472705-1']);
   _gaq.push(['_trackPageview']);
 
-  var url = 'http://miniplay.herokuapp.com';
-  // var url = 'http://10.0.0.5:5000';
+  // var url = 'http://miniplay.herokuapp.com';
+  var url = 'http://10.0.0.5:5000';
 
   var socket = io(url);
   var music_status = {};
@@ -65,6 +65,10 @@ $(function() {
   }
 
   $('#setting').click(function(ev) {
+    $('#menu').css('display', 'block');
+  });
+
+  $('#signout').click(function(ev) {
     set_email('');
     $('#login-overlay').css('display', 'table');
     $('#main').css('display', 'none');

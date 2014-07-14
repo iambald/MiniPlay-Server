@@ -20,6 +20,10 @@
       <button id='down' class='control interface medium thumb right' title='Thumbs down' tabIndex='-1' disabled></button>
       <button id='up' class='control interface medium thumb right' title='Thumbs up' tabIndex='-1' disabled></button>
     </div> -->
+    <menu id='menu' role='menu'>
+      <button id='lastfm-toggle' class='menuitem' role='menuitem'>Scrobbling enabled</li>
+      <button id='signout' class='menuitem' role='menuitem'>Sign out</li>
+    </menu>
     <div id='top-bar'>
       <div id='title'></div>
       <div id='artist'></div>
@@ -50,7 +54,7 @@
 
   <script src='scripts/jquery.js'></script>
   <script src='scripts/dragdealer.min.js'></script>
-  <script src="http://miniplay.herokuapp.com/socket.io/socket.io.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
   <script src='scripts/main.js'></script>
 </body>
 </html>
