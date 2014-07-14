@@ -138,7 +138,7 @@ body {
   background-size: 40 40!important;
 }
 
-#lastfm-toggle {
+/*#lastfm-toggle {
   background: no-repeat url(../img/lastfm.png);
   background-size: 40 40;
   width: 48px;
@@ -150,7 +150,7 @@ body {
 
 .lastfm-checked {
   opacity: 0.5!important;
-}
+}*/
 
 #artist {
   font-size: 12pt;
@@ -334,4 +334,35 @@ body {
 
 #slider-thumb[disabled] {
   display: none;
+}
+
+#menu {
+  display: none;
+  float: right;
+  border-radius: 2px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, .5);
+  outline: 1px solid rgba(0, 0, 0, 0.2);
+  background: white;
+  padding: 0.5em 0;
+  margin: 0;
+  z-index: 3;
+  position: relative;
+  right: 0.5em;
+}
+
+.menuitem {
+  display: block;
+  margin: 0;
+  text-align: start;
+  width: 100%;
+  background: transparent;
+  border: 0;
+  color: black;
+  line-height: 14pt;
+  padding: 0 1.5em;
+  transition: background-color 0.218s;
+}
+
+.menuitem:hover {
+  background-color: rgba(0, 0, 0, 0.06);
 }

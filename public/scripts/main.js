@@ -3,8 +3,8 @@ $(function() {
   _gaq.push(['_setAccount', 'UA-48472705-1']);
   _gaq.push(['_trackPageview']);
 
-  var url = 'http://miniplay.herokuapp.com';
-  // var url = 'http://10.0.0.5:5000';
+  // var url = 'http://miniplay.herokuapp.com';
+  var url = 'http://10.0.0.5:5000';
 
   var socket = io(url);
   var music_status = {};
@@ -29,10 +29,10 @@ $(function() {
     $('#login-overlay').css('display', 'table');
   }
   else {
-    $('#main').css('display', 'block');
+    $('#main').show();
   }
 
-  $('#loading-overlay').css('display', 'none');
+  $('#loading-overlay').hide();
 
   function get_email() {
     if (typeof(Storage) !== 'undefined') {
@@ -65,15 +65,27 @@ $(function() {
   }
 
   $('#setting').click(function(ev) {
+    $('#menu').show();
+    $('#menu').css('top', $('#top-bar').height());
+    ev.stopPropagation();
+  });
+
+  $('body').on('click', function(ev) {
+    if ($('#menu').has(ev.target).length === 0) {
+      $('#menu').hide();
+    }
+  });
+
+  $('#signout').click(function(ev) {
     set_email('');
     $('#login-overlay').css('display', 'table');
-    $('#main').css('display', 'none');
+    $('#main').hide();
   });
 
   $('#email-box').submit(function() {
     set_email($('#email-input').val());
-    $('#main').css('display', 'block');
-    $('#login-overlay').css('display', 'none');
+    $('#main').show();
+    $('#login-overlay').hide();
   });
 
   // $('#email-submit').click(function(ev) {
