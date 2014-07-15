@@ -22,8 +22,16 @@
       <button id='up' class='control interface medium thumb right' title='Thumbs up' tabIndex='-1' disabled></button>
     </div> -->
     <menu id='menu' role='menu'>
+      <div id='vslider' role='slider' class='dragdealer interface'>
+        <div id='vslider-thumb' class='handle interface'></div>
+<!--         <div id='vslider-background'>
+          <div id='played-vslider'></div>
+        </div> -->
+      </div>
       <!-- <button id='lastfm-toggle' class='menuitem' role='menuitem'>Scrobbling enabled</li> -->
       <!-- <div class='menuseparator'></div> -->
+
+      <div class='menuseparator'></div>
       <button id='signout' class='menuitem' role='menuitem'>Sign out</li>
     </menu>
     <div id='top-bar'>
@@ -37,7 +45,7 @@
       <div id='current-time'>0:00</div>
       <div id='total-time'>0:00</div>
       <div id='bottom-bar'>
-        <div id='slider'role='slider' class='dragdealer interface'>
+        <div id='slider' role='slider' class='dragdealer interface'>
           <div id='slider-background'>
             <div id='played-slider'></div>
           </div>
