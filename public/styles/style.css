@@ -335,6 +335,44 @@ body {
   display: none;
 }
 
+#played-vslider {
+  background-color: #fd8500;
+  width: 3pt;
+  height: 0px;
+}
+
+#vslider {
+  outline: none;
+  height: 100pt;
+  padding: 7pt 0 7pt 0;
+  cursor: pointer;
+  width: 3pt;
+  z-index: 1000;
+}
+
+#vslider[disabled] {
+  cursor: default;
+}
+
+#vslider-background {
+  background-color: #eaeaea;
+  height: 100%;
+  width: 3pt;
+}
+
+#vslider-thumb {
+  width: 13pt;
+  height: 13pt;
+  margin-left: -4pt;
+  position: relative;
+  border-radius: 50%;
+  background-color: #fd8500;
+}
+
+#vslider-thumb[disabled] {
+  display: none;
+}
+
 #menu {
   display: none;
   float: right;

@@ -30,6 +30,9 @@ $(function() {
     setPositions();
   }
 
+  window.setTimeout(setPositions, 1);
+
+
   $('#loading-overlay').hide();
 
   function get_email() {
@@ -217,12 +220,12 @@ $(function() {
   $('#setting').click(function(ev) {
     $('#menu').toggle();
     $('#menu').css('top', $('#top-bar').height());
-    ev.stopPropagation();
+    // ev.stopPropagation();
   });
 
   $('body').click(function(ev) {
     if ($('#menu').has(ev.target).length === 0) {
-      $('#menu').hide();
+      // $('#menu').hide();
     }
   });
 
@@ -257,6 +260,26 @@ $(function() {
     speed: 1,
     slide: false
   });
+
+  var vslider = new Dragdealer('vslider', {
+    callback: function(x, y) {
+      console.log('cb ' + y + ' ' + x);
+      if (socket.connected) {
+        socket.emit('data', {action : 'send_command', type : 'vslider', position : 1 - y});
+      }
+    },
+    animationCallback: function(x, y) {
+      console.log('an ' + y+ ' ' + x);
+      // $('#played-vslider').css('height', -1 * $('#vslider-thumb').css('top'));
+    },
+    horizontal: false,
+    vertical: true,
+    y: 1,
+    //x: $('#played-vslider').width() / ($('#vslider').width() - ($('#vslider-thumb').width())),
+    speed: 1,
+    slide: false
+  });
+
   /*
   $('#lastfm-toggle').on('click', function() {
     chrome.storage.sync.set({'scrobbling-enabled': $('#lastfm-toggle').hasClass('lastfm-checked')});
