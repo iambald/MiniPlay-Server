@@ -21,14 +21,13 @@ $(function() {
     set_state('no_tab');
   }
 
-  setBackgroundSize();
-
   var email = get_email();
   if (email == '') {
     $('#login-overlay').css('display', 'table');
   }
   else {
     $('#main').show();
+    setPositions();
   }
 
   $('#loading-overlay').hide();
@@ -63,7 +62,7 @@ $(function() {
     socket.emit('room', {client : 'controller', room : email});
   }
 
-  function setBackgroundSize() {
+  function setPositions() {
     var width = $(window).width();
     var height = $(window).height();
     var size = Math.max(width, height) - $('top-bar').height() - $('bottom-bar').height();
@@ -77,6 +76,11 @@ $(function() {
       $('#album-art').css('background-position-x', 0);
       $('#album-art').css('background-position-y', Math.round((width - height) / 2) * -1);
     }
+    //51 pt
+    var topBarHeight = $('#top-bar').outerHeight();
+    var settingIconHeight = 53;//$('#setting').css('background-size');
+    var offset = Math.round((topBarHeight - settingIconHeight) / 2);
+    $('#setting').css('background-position-y', offset);
   }
 
   function secondsToHms(d) {
@@ -235,7 +239,7 @@ $(function() {
     return false;
   });
 
-  $(window).resize(setBackgroundSize);
+  $(window).resize(setPositions);
 
   var slider = new Dragdealer('slider', {
     callback: function(x, y) {
