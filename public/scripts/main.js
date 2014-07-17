@@ -69,12 +69,12 @@ $(function() {
     $('#album-art').width(size);
     $('#album-art').height(size);
     if (height > width) {
-      $('#album-art').css('background-position-x', Math.round((height - width) / 2) * -1);
-      $('#album-art').css('background-position-y', 0);
+      $('#album-art').css({ 'background-position-x' : Math.round((height - width) / 2) * -1,
+                            'background-position-y' : 0 });
     }
     else {
-      $('#album-art').css('background-position-x', 0);
-      $('#album-art').css('background-position-y', Math.round((width - height) / 2) * -1);
+      $('#album-art').css({ 'background-position-x', 0,
+                            'background-position-y', Math.round((width - height) / 2) * -1});
     }
     //51 pt
     var topBarHeight = $('#top-bar').outerHeight();
@@ -106,7 +106,6 @@ $(function() {
         $('#album-art').css('background-image', 'url("../img/default_album.png")');
         $('#title').html('No song selected');
         $('#artist').html('');
-        $('#album').html('');
         break;
       case 'song':
         $('.interface').attr('disabled', false);
@@ -128,7 +127,6 @@ $(function() {
         set_state('song');
         $('#title').html(response.title);
         $('#artist').html(response.artist);
-        $('#album').html(response.album);
         if (response.album_art == 'http://undefined') {
           response.album_art = 'img/default_album.png';
         }
@@ -215,8 +213,8 @@ $(function() {
   });
 
   $('#setting').click(function(ev) {
-    $('#menu').css('visibility', 'visible');
-    $('#menu').css('top', $('#top-bar').height());
+    $('#menu').css({ 'visibility': 'visible',
+                     'top' : $('#top-bar').height());
     ev.stopPropagation();
   });
 
@@ -271,7 +269,6 @@ $(function() {
     horizontal: false,
     vertical: true,
     y: 0,
-    //x: $('#played-vslider').width() / ($('#vslider').width() - ($('#vslider-thumb').width())),
     speed: 1,
     slide: false,
     top: parseInt($('#vslider-thumb').css('height'), 10)
