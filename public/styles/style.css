@@ -336,7 +336,7 @@ body {
 }
 
 #played-vslider {
-  background-color: #fd8500;
+  background-color: #eaeaea;
   width: 3pt;
   height: 0px;
 }
@@ -344,10 +344,11 @@ body {
 #vslider {
   outline: none;
   height: 100pt;
-  padding: 7pt 0 7pt 0;
+  margin: 0pt 0 25pt 0;
   cursor: pointer;
   width: 3pt;
   z-index: 1000;
+  padding-left: 50%;
 }
 
 #vslider[disabled] {
@@ -355,7 +356,7 @@ body {
 }
 
 #vslider-background {
-  background-color: #eaeaea;
+  background-color: #fd8500;
   height: 100%;
   width: 3pt;
 }
@@ -363,7 +364,7 @@ body {
 #vslider-thumb {
   width: 13pt;
   height: 13pt;
-  margin-left: -4pt;
+  margin-left: -5pt;
   position: relative;
   border-radius: 50%;
   background-color: #fd8500;
@@ -374,7 +375,7 @@ body {
 }
 
 #menu {
-  display: none;
+  visibility: hidden;
   float: right;
   border-radius: 5px;
   border: 1px solid #c0c0c0;
@@ -418,5 +419,5 @@ body {
   -moz-user-select: none;     /* Firefox all */
   -ms-user-select: none;      /* IE 10+ */
   border-top: 1px solid #c0c0c0;
-  width: 110%;
+  width: 100%;
 }

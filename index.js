@@ -15,6 +15,7 @@ function get_usertype(usertype) {
 app.use(express.static(__dirname + '/public'));
 
 io.on('connection', function(socket) {
+
   socket.on('disconnect', function() {
     console.log(socket.usertype + ' disconnected from ' + socket.room);
   });
