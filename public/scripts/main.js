@@ -3,7 +3,7 @@ $(function() {
   _gaq.push(['_setAccount', 'UA-48472705-1']);
   _gaq.push(['_trackPageview']);
 
-  var url = 'http://miniplay.herokuapp.com';
+  var url = 'https://miniplay.herokuapp.com';
   // var url = 'http://10.0.0.5:5000';
 
   var socket = io(url);
@@ -73,8 +73,8 @@ $(function() {
                             'background-position-y' : 0 });
     }
     else {
-      $('#album-art').css({ 'background-position-x', 0,
-                            'background-position-y', Math.round((width - height) / 2) * -1});
+      $('#album-art').css({ 'background-position-x' :  0,
+                            'background-position-y' : Math.round((width - height) / 2) * -1});
     }
     //51 pt
     var topBarHeight = $('#top-bar').outerHeight();
@@ -136,8 +136,13 @@ $(function() {
           $('#current-time').html(response.current_time);
           $('#total-time').html(response.total_time);
           var offset = Math.round((response.current_time_s / response.total_time_s) * ($('#slider').width() - ($('#slider-thumb').width())));
-          $('#played-slider').attr('style', 'width:' + offset + 'px;');
-          $('#slider-thumb').attr('style', 'left:' + offset + 'px;');
+          $('#played-slider').css('width', offset);
+          $('#slider-thumb').css('left', offset);
+        }
+        if (!vslider.dragging) {
+          var offset = Math.round((1 - response.volume) * ($('#vslider').height() - $('#vslider-thumb').height())) + $('#vslider-thumb').height();
+          $('#played-vslider').css('height', offset);
+          $('#vslider-thumb').css('top', offset);
         }
         set_thumb(response.thumb);
         set_repeat(response.repeat);
@@ -214,7 +219,7 @@ $(function() {
 
   $('#setting').click(function(ev) {
     $('#menu').css({ 'visibility': 'visible',
-                     'top' : $('#top-bar').height());
+                     'top' : $('#top-bar').height()});
     ev.stopPropagation();
   });
 
@@ -268,7 +273,7 @@ $(function() {
     },
     horizontal: false,
     vertical: true,
-    y: 0,
+    y: $('#played-vslider').height() / ($('#vslider').height() - $('#vslider-thumb').height()),
     speed: 1,
     slide: false,
     top: parseInt($('#vslider-thumb').css('height'), 10)
