@@ -8,6 +8,7 @@ $(function() {
 
   var socket = io(url);
   var music_status = {};
+  var slider_updated = false, vslider_updated = false;
   socket.on('connect', function() {
     socket.emit('room', {client : 'controller', room : email});
   });
@@ -132,14 +133,20 @@ $(function() {
         }
         $('#album-art').css('background-image', 'url("' + response.album_art + '")');
         toggle_play(response.status);
-        if (!slider.dragging) {
+        if (response.slider_updated == true) {
+          slider_updated = false;
+        }
+        if (response.vslider_updated == true) {
+          vslider_updated = false;
+        }
+        if (!slider.dragging && !slider_updated) {
           $('#current-time').html(response.current_time);
           $('#total-time').html(response.total_time);
           var offset = Math.round((response.current_time_s / response.total_time_s) * ($('#slider').width() - ($('#slider-thumb').width())));
           $('#played-slider').css('width', offset);
           $('#slider-thumb').css('left', offset);
         }
-        if (!vslider.dragging) {
+        if (!vslider.dragging && !vslider_updated) {
           var offset = Math.round((1 - response.volume) * ($('#vslider').height() - $('#vslider-thumb').height())) + $('#vslider-thumb').height();
           $('#played-vslider').css('height', offset);
           $('#vslider-thumb').css('top', offset);
@@ -252,6 +259,7 @@ $(function() {
   var slider = new Dragdealer('slider', {
     callback: function(x, y) {
       if (socket.connected) {
+        slider_updated = true;
         socket.emit('data', {action : 'send_command', type : 'slider', position : x});
       }
     },
@@ -269,6 +277,7 @@ $(function() {
   var vslider = new Dragdealer('vslider', {
     callback: function(x, y) {
       if (socket.connected) {
+        vslider_updated = true;
         socket.emit('data', {action : 'send_command', type : 'vslider', position : 1 - y});
       }
     },
