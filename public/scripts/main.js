@@ -218,8 +218,13 @@ $(function() {
   });
 
   $('#setting').click(function(ev) {
-    $('#menu').css({ 'visibility': 'visible',
-                     'top' : $('#top-bar').height()});
+    $('#menu').css('top', $('#top-bar').height());
+    if ($('#menu').css('visibility') == 'hidden') {
+      $('#menu').css('visibility', 'visible');
+    }
+    else {
+      $('#menu').css('visibility', 'hidden');
+    }
     ev.stopPropagation();
   });
 
