@@ -290,7 +290,8 @@ $(function() {
     y: $('#played-vslider').height() / ($('#vslider').height() - $('#vslider-thumb').height()),
     speed: 1,
     slide: false,
-    top: parseInt($('#vslider-thumb').css('height'), 10)
+    top: parseInt($('#vslider-thumb').css('height'), 10),
+    bottom: -1 * parseInt($('#vslider-thumb').css('height'), 10)
   });
 
   /*
