@@ -216,6 +216,34 @@ body {
 
 .thumb {
   opacity: 1;
+  outline: none;
+  border: none;
+  opacity: 0.8;
+  transition: background-color 0.218s;
+  background: no-repeat url(../img/thumbs.png);
+  background-size: 288px 54px;
+  width: 48px;
+  height: 54px;
+  margin-top: -80pt;
+}
+
+
+#up {
+  background-position: 0 0;
+  margin-left: 1em;
+}
+
+#down {
+  background-position: -240px 0;
+  margin-right: 1em;
+}
+
+#down.control-checked {
+  background-position: -192px 0;
+}
+
+#up.control-checked {
+  background-position: -48px 0;
 }
 
 .left {
@@ -260,22 +288,6 @@ body {
 
 #ff.control {
   background-position: -451px 0;
-}
-
-#down.control {
-  background-position: -513px 0;
-}
-
-#down.control-checked {
-  background-position: -566px 0;
-}
-
-#up.control {
-  background-position: -619px 0;
-}
-
-#up.control-checked {
-  background-position: -672px 0;
 }
 
 #time {
@@ -343,7 +355,8 @@ body {
   cursor: pointer;
   width: 3pt;
   z-index: 1000;
-  padding-left: 50%;
+  padding-left: 2.5em;
+  padding-right: 2.5em;
 }
 
 #vslider[disabled] {
@@ -389,7 +402,7 @@ body {
 .menuitem {
   display: block;
   margin: 0;
-  padding: 0 1.5em 0 1em;
+  padding: 0 1em 0 1em;
   text-align: start;
   width: 100%;
   background: white;
@@ -413,6 +426,14 @@ body {
   .control:hover {
     background-color: #e8e8e8!important;
     opacity: 1;
+  }
+
+  #up:hover {
+    background-position: -96px 0;
+  }
+
+  #down:hover {
+    background-position: -144px 0;
   }
 }
 

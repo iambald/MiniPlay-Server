@@ -82,6 +82,7 @@ $(function() {
     var settingIconHeight = 53;//$('#setting').css('background-size');
     var offset = Math.round((topBarHeight - settingIconHeight) / 2);
     $('#setting').css('background-position-y', offset);
+
   }
 
   function secondsToHms(d) {
@@ -220,6 +221,11 @@ $(function() {
   }
 
   $('.control').click(function(ev) {
+    var name = $(ev.currentTarget).attr('id');
+    socket.emit('data', {action : 'send_command', type : name});
+  });
+
+  $('.thumb').click(function(ev) {
     var name = $(ev.currentTarget).attr('id');
     socket.emit('data', {action : 'send_command', type : name});
   });
