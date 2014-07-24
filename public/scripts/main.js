@@ -98,14 +98,14 @@ $(function() {
       case 'no_tab':
         $('.interface').attr('disabled', true);
         $('#infobar').hide();
-        $('#album-art').css('background-image', 'url("../img/default_album.png")');
+        $('#album-art').css('background-image', 'url("../img/empty_state.png")');
         $('#title').html('No Google Music tab found');
         $('#artist').html('Make sure Google Music is open on your computer');
         break;
       case 'no_song':
         $('.interface').attr('disabled', true);
         $('#infobar').hide();
-        $('#album-art').css('background-image', 'url("../img/default_album.png")');
+        $('#album-art').css('background-image', 'url("../img/empty_state.png")');
         $('#title').html('No song selected');
         $('#artist').html('');
         break;
@@ -130,7 +130,7 @@ $(function() {
         $('#title').html(response.title);
         $('#artist').html(response.artist);
         if (response.album_art == 'http://undefined') {
-          response.album_art = 'img/default_album.png';
+          response.album_art = 'img/empty_state.png';
         }
         $('#album-art').css('background-image', 'url("' + response.album_art + '")');
         toggle_play(response.status);

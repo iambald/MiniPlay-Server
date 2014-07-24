@@ -51,6 +51,7 @@ body {
   background-image: url('../img/default_album.png');
   background-size: 100%;
   background-position: center center;
+  background-color: #e5e5e5;
 }
 
 #main {
@@ -403,7 +404,7 @@ body {
   display: block;
   margin: 0;
   padding: 0 1em 0 1em;
-  text-align: start;
+  text-align: center;
   width: 100%;
   background: white;
   border: 0;
