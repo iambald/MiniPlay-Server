@@ -219,7 +219,6 @@ body {
   opacity: 1;
   outline: none;
   border: none;
-  opacity: 0.8;
   transition: background-color 0.218s;
   background: no-repeat url(../img/thumbs.png);
   background-size: 288px 54px;
